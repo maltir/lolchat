@@ -11,7 +11,7 @@ window.onload=function(){
 	maltir.color.putButton();
 	maltir.bdm.open();
 	maltir.bdm.createTable();
-	maltir.bdm.insertDefault();
+	maltir.bdm.temp();
 	maltir.bdm.getByMembre(0,maltir.bdm.loadColorMembre);
 }
 

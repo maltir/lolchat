@@ -1,11 +1,13 @@
 maltir.bdm = {};
 maltir.bdm.bd = null;
 maltir.bdm.table="color";
-maltir.bdm.insert=null;
+maltir.bdm.bool = false;
+	
+setInterval(function(){maltir.bdm.temp();},500);
 
 maltir.bdm.open=function(){
-	var dbSize = 5 * 1024 * 1024;
-	maltir.bdm.bd = openDatabase("toast","1.0","bd web pour lolchat",dbSize);
+	var dbSize = 5 * 1024 * 1024; // 5MB
+	maltir.bdm.bd = openDatabase("oeuf","1.0","bd web pour lolchat",dbSize);
 }
 
 maltir.bdm.onError = function(tx, e) {
@@ -20,9 +22,9 @@ maltir.bdm.createTable = function() {
 		var bd = maltir.bdm.bd;
 		bd.transaction(function(tx) {
 			tx.executeSql("CREATE TABLE IF NOT EXISTS " +maltir.bdm.table+
-					  "(ID INTEGER PRIMARY KEY ASC, idperso TEXT, colormain TEXT , colorchucho TEXT , colorback TEXT, nom TEXT, img TEXT)", []);
-			//tx.executeSql("INSERT IGNORE INTO " +maltir.bdm.table+ " SET ID=1, idperso='0', colormain='#000000', colorchucho='#666633', colorback='#FFFFFF', nom='default', img=''",[] );		  
+					  "(ID INTEGER PRIMARY KEY ASC, idperso TEXT, colormain TEXT , colorchucho TEXT , colorback TEXT, nom TEXT, img TEXT)", []);		  
 		});
+		maltir.bdm.getAllColor(maltir.bdm.test);
 }
 
 maltir.bdm.addColor = function(id,color1,color2,color3,nom,img) {
@@ -75,46 +77,32 @@ maltir.bdm.getByMembre=function(id,renderFunc){
 }
 
 maltir.bdm.loadColorMembre=function(tx, rs){
-	if(rs.rows.item(1).idperso == '0'){
-		var main = document.getElementById("colorMain");
-		var chucho = document.getElementById("colorChucho");
-		var back = document.getElementById("colorBack");
-		alert(rs.rows.item(1).colormain);
-		alert(rs.rows.item(1).colorchucho);
-		alert(rs.rows.item(1).colorback);
-		main.value = rs.rows.item(1).colormain;
-		chucho.value = rs.rows.item(1).colorchucho;
-		back.value = rs.rows.item(1).colorback;
-	}
-}
-
-maltir.bdm.verifInsert=function(){
-	var db = maltir.bdm.bd;
-	  db.transaction(function(tx) {
-		tx.executeSql("SELECT * FROM "+maltir.bdm.table, [], maltir.bdm.checkSiVide,
-			maltir.bdm.onError);
-	});
-}
-
-maltir.bdm.checkSiVide=function(tx, rs){
-	if(rs.rows.length >= 1){
-		maltir.bdm.insert = false;
-	}else{
-		maltir.bdm.insert = true;
-	}
-}
-
-maltir.bdm.insertDefault=function(){
-	maltir.bdm.verifInsert();
-	while(maltir.bdm.insert === null){
-		if(maltir.bdm.insert){
-			var db = maltir.bdm.bd;
-		  db.transaction(function(tx){
-			tx.executeSql("INSERT INTO "+maltir.bdm.table+"(idperso,colormain,colorchucho,colorback,nom,img) VALUES ('0','#000000','#666633','#FFFFFF','default','')",
-			[],
-			maltir.bdm.onSuccess,
-			maltir.bdm.onError);
-			});
+try{
+		if(rs.rows.item(0).idperso == '0'){
+			var main = document.getElementById("colorMain");
+			var chucho = document.getElementById("colorChucho");
+			var back = document.getElementById("colorBack");
+			alert(rs.rows.item(0).colormain + " - " + rs.rows.item(0).colorchucho + " - " + rs.rows.item(0).colorback);
+			main.value = rs.rows.item(0).colormain;
+			chucho.value = rs.rows.item(0).colorchucho;
+			back.value = rs.rows.item(0).colorback;
 		}
+	}
+	catch(err){
+		//nothing to do
+		maltir.bdm.getByMembre(0,maltir.bdm.loadColorMembre);
+	}
+}
+
+maltir.bdm.temp = function(){
+		if(maltir.bdm.bool){
+			maltir.bdm.addColor('0','#000000','#666633','#FFFFFF','default','');
+			maltir.bdm.bool = false;
+		}
+	}
+	
+maltir.bdm.test = function(tx, rs){
+	if(rs.rows.length == 0){
+		maltir.bdm.bool = true;
 	}
 }

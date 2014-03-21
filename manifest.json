@@ -4,7 +4,7 @@
   "name": "Lands of lords chat",
   "short_name" : "LOLCHAT",
   "description": "Notification lors de nouvelles discutions dans un palais de lands of lords.",
-  "version": "0.5.6",
+  "version": "0.5.14",
   "icons": {"big":"lolshield.png"},
 
   "browser_action": {
