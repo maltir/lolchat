@@ -2,12 +2,18 @@ var theTitle=document.title;
 var check = self.setInterval(function(){testNewMessageChat()},1);
 var childCount=$("#chatmsgtable tbody").children().length;
 var count = 0;
-
+var maltir = {};
 window.onclick=function(){
 	document.title=theTitle;
 	count=0;
 }
-
+window.onload=function(){
+	maltir.color.putButton();
+	maltir.bdm.open();
+	maltir.bdm.createTable();
+	maltir.bdm.insertDefault();
+	maltir.bdm.getByMembre(0,maltir.bdm.loadColorMembre);
+}
 
 document.getElementById("chatinput").addEventListener("keydown", function(e) {
     if (!e) { var e = window.event; }
@@ -36,3 +42,8 @@ function titleChange(){
 function titleChangeNumber(number){
 	document.title="("+number+") " + document.title;
 }
+
+function sleep(delay) {
+        var start = new Date().getTime();
+        while (new Date().getTime() < start + delay);
+      }

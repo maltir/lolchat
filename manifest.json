@@ -12,12 +12,12 @@
     "default_title": "LOL chat"
   },
   "background": {
-    "scripts": ["jquery-1.10.2.min.js","title.js"]
+    "scripts": ["jquery-1.10.2.min.js","title.js","color.js","base_donne.js"]
   },
   "content_scripts": [
     {
       "matches": ["http://*.landsoflords.fr/*"],
-      "js": ["jquery-1.10.2.min.js","title.js"]
+      "js": ["jquery-1.10.2.min.js","title.js","color.js","base_donne.js"]
     }
   ],
   "permissions": [
