@@ -1,23 +1,25 @@
 var theTitle=document.title;
-var check = self.setInterval(function(){testNewMessageChat()},1);
+var check = self.setInterval(function(){testNewMessageChat()},100);
 var childCount=$("#chatmsgtable tbody").children().length;
 var count = 0;
-var maltir = {};
+var lolchat = {};
 window.onclick=function(){
 	document.title=theTitle;
 	count=0;
 }
 window.onload=function(){
-	maltir.color.putButton();
-	maltir.bdm.open();
-	maltir.bdm.createTable();
-	maltir.bdm.temp();
-	maltir.bdm.getByMembre('0',maltir.bdm.loadColorMembre);
+	lolchat.color.putButton();
+	lolchat.bdm.open();
+	lolchat.bdm.createTable();
+	lolchat.bdm.temp();
+	lolchat.bdm.getByMembre('0',lolchat.bdm.loadColorMembre);
+	
+	document.getElementById("editDefaultBtn").onclick=function(){lolchat.color.edit('0');};
 }
 
 document.getElementById("chatinput").addEventListener("keydown", function(e) {
     if (!e) { var e = window.event; }
-    if (e.keyCode == 13) { childCount++; }
+    if (e.keyCode == 13) { childCount++;}
 }, false);
 
 function testNewMessageChat(){
@@ -30,6 +32,7 @@ function testNewMessageChat(){
 		count++;
 		titleChangeNumber(count);
 		childCount=child;
+		lolchat.bdm.getByMembre('0',lolchat.color.changeColor);
 	}
 }
 

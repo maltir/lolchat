@@ -1,6 +1,6 @@
-maltir.color = {};
+lolchat.color = {};
 
-maltir.color.putButton = function(){
+lolchat.color.putButton = function(){
 	var positionButton = $("#ah_mid h2");
 	
 	//Create an input type dynamically.
@@ -32,10 +32,30 @@ maltir.color.putButton = function(){
 	
 	button.setAttribute("type", "submit");
 	button.setAttribute("value", "edit");
+	button.setAttribute("id", "editDefaultBtn");
 	
 	form.appendChild(element1);
 	form.appendChild(element2);
 	form.appendChild(element3);
 	form.appendChild(button);
 	positionButton[0].appendChild(form);
+}
+
+lolchat.color.edit = function(id){
+	var main = document.getElementById("colorMain").value;
+	var chucho = document.getElementById("colorChucho").value;
+	var back = document.getElementById("colorBack").value;
+	lolchat.bdm.updateColor(id,main,chucho,back);
+}
+
+lolchat.color.changeColor = function(tx, rs){
+	alert("change color");
+	var position = $("#chatmsgtable tbody .h .body").children().length;
+	alert(position);
+	var txt = document.createTextNode(position[childCount-1].innerText);
+	var span = document.createElement("span");
+	span.setAttribute("style", "color:"+rs.rows.item(0).colormain+";");
+	span.appendChild(txt.innerHtml);
+	position[childCount-1].appendChild(span);
+	alert("change color fin");
 }

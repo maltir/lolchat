@@ -1,82 +1,91 @@
-maltir.bdm = {};
-maltir.bdm.bd = null;
-maltir.bdm.table="color";
-maltir.bdm.bool = false;
+lolchat.bdm = {};
+lolchat.bdm.bd = null;
+lolchat.bdm.table="color";
+lolchat.bdm.bool = false;
 	
-setInterval(function(){maltir.bdm.temp();},500);
+setInterval(function(){lolchat.bdm.temp();},500);
 
-maltir.bdm.open=function(){
+lolchat.bdm.open=function(){
 	var dbSize = 5 * 1024 * 1024; // 5MB
-	maltir.bdm.bd = openDatabase("patate","1.0","bd web pour lolchat",dbSize);
+	lolchat.bdm.bd = openDatabase("patate","1.0","bd web pour lolchat",dbSize);
 }
 
-maltir.bdm.onError = function(tx, e) {
+lolchat.bdm.onError = function(tx, e) {
 	  alert("Une erreur est survenue: " + e.message);
 	}
 	
-maltir.bdm.onSuccess = function(tx, r) {
+lolchat.bdm.onSuccess = function(tx, r) {
   //webbd.getAllTestItems(loadTestItems);
 }
 
-maltir.bdm.createTable = function() {
-		var bd = maltir.bdm.bd;
+lolchat.bdm.createTable = function() {
+		var bd = lolchat.bdm.bd;
 		bd.transaction(function(tx) {
-			tx.executeSql("CREATE TABLE IF NOT EXISTS " +maltir.bdm.table+
+			tx.executeSql("CREATE TABLE IF NOT EXISTS " +lolchat.bdm.table+
 					  "(ID INTEGER PRIMARY KEY ASC, idperso TEXT, colormain TEXT , colorchucho TEXT , colorback TEXT, nom TEXT, img TEXT)", []);		  
 		});
-		maltir.bdm.getAllColor(maltir.bdm.test);
+		lolchat.bdm.getAllColor(lolchat.bdm.test);
 }
 
-maltir.bdm.addColor = function(id,color1,color2,color3,nom,img) {
-		var bd = maltir.bdm.bd;
+lolchat.bdm.addColor = function(id,color1,color2,color3,nom,img) {
+		var bd = lolchat.bdm.bd;
 		bd.transaction(function(tx){
-			tx.executeSql("INSERT INTO "+maltir.bdm.table+"(idperso,colormain,colorchucho,colorback,nom,img) VALUES (?,?,?,?,?,?)",
+			tx.executeSql("INSERT INTO "+lolchat.bdm.table+"(idperso,colormain,colorchucho,colorback,nom,img) VALUES (?,?,?,?,?,?)",
 				[id,color1,color2,color3,nom,img],
-				maltir.bdm.onSuccess,
-				maltir.bdm.onError);
+				lolchat.bdm.onSuccess,
+				lolchat.bdm.onError);
 		   });
 }
 
-maltir.bdm.getAllColor = function(renderFunc) {
-	  var db = maltir.bdm.bd;
+lolchat.bdm.getAllColor = function(renderFunc) {
+	  var db = lolchat.bdm.bd;
 	  db.transaction(function(tx) {
-		tx.executeSql("SELECT * FROM "+maltir.bdm.table, [], renderFunc,
-			maltir.bdm.onError);
+		tx.executeSql("SELECT * FROM "+lolchat.bdm.table, [], renderFunc,
+			lolchat.bdm.onError);
 	  });
 }
 
-maltir.bdm.deleteColor = function(id) {
-	  var db = maltir.bdm.bd;
+lolchat.bdm.deleteColor = function(id) {
+	  var db = lolchat.bdm.bd;
 	  db.transaction(function(tx){
-		tx.executeSql("DELETE FROM "+maltir.bdm.table+" WHERE ID=?", [id],
-			maltir.bdm.onSuccess,
-			maltir.bdm.onError);
+		tx.executeSql("DELETE FROM "+lolchat.bdm.table+" WHERE ID=?", [id],
+			lolchat.bdm.onSuccess,
+			lolchat.bdm.onError);
 		});
 }
 
-maltir.bdm.loadColorItems=function(tx, rs) {
+lolchat.bdm.updateColor = function(id,color1,color2,color3) {
+	  var db = lolchat.bdm.bd;
+	  db.transaction(function(tx){
+		tx.executeSql("UPDATE "+lolchat.bdm.table+" SET colormain=? , colorchucho=? ,colorback=? WHERE idperso=?", [color1,color2,color3,id],
+			lolchat.bdm.onSuccess,
+			lolchat.bdm.onError);
+		});
+}
+
+lolchat.bdm.loadColorItems=function(tx, rs) {
 	  var rowOutput = "<tr><th>ID</th><th>texte</th><th>Supprimer</th></tr>";
-	  var colorItems = document.getElementById("maltirTable");
+	  var colorItems = document.getElementById("lolchatTable");
 	  for (var i=0; i < rs.rows.length; i++) {
-		rowOutput += maltir.bdm.renderColor(rs.rows.item(i));
+		rowOutput += lolchat.bdm.renderColor(rs.rows.item(i));
 	  }
 
 	  colorItems.innerHTML = rowOutput;
 	}
 	
-maltir.bdm.renderColor=function(row) {
+lolchat.bdm.renderColor=function(row) {
   return "<tr><td>" + row.nom + "</td><td><a href='javascript:void(0);' onclick=\'webbd.deleteTest(" + row.ID +");\'>Supprimer</a></td></tr>";
 }
 
-maltir.bdm.getByMembre=function(id,renderFunc){
-	var db = maltir.bdm.bd;
+lolchat.bdm.getByMembre=function(id,renderFunc){
+	var db = lolchat.bdm.bd;
 	  db.transaction(function(tx) {
-		tx.executeSql("SELECT * FROM "+maltir.bdm.table+" WHERE idperso=?", [id], renderFunc,
-			maltir.bdm.onError);
+		tx.executeSql("SELECT * FROM "+lolchat.bdm.table+" WHERE idperso=?", [id], renderFunc,
+			lolchat.bdm.onError);
 	});
 }
 
-maltir.bdm.loadColorMembre=function(tx, rs){
+lolchat.bdm.loadColorMembre=function(tx, rs){
 	var main = document.getElementById("colorMain");
 	var chucho = document.getElementById("colorChucho");
 	var back = document.getElementById("colorBack");
@@ -86,15 +95,15 @@ maltir.bdm.loadColorMembre=function(tx, rs){
 	back.value = rs.rows.item(0).colorback;
 }
 
-maltir.bdm.temp = function(){
-		if(maltir.bdm.bool){
-			maltir.bdm.addColor('0','#000000','#666633','#FFFFFF','default','');
-			maltir.bdm.bool = false;
+lolchat.bdm.temp = function(){
+		if(lolchat.bdm.bool){
+			lolchat.bdm.addColor('0','#000000','#666633','#FFFFFF','default','');
+			lolchat.bdm.bool = false;
 		}
 	}
 	
-maltir.bdm.test = function(tx, rs){
+lolchat.bdm.test = function(tx, rs){
 	if(rs.rows.length == 0){
-		maltir.bdm.bool = true;
+		lolchat.bdm.bool = true;
 	}
 }
