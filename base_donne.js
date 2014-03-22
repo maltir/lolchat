@@ -7,7 +7,7 @@ setInterval(function(){maltir.bdm.temp();},500);
 
 maltir.bdm.open=function(){
 	var dbSize = 5 * 1024 * 1024; // 5MB
-	maltir.bdm.bd = openDatabase("oeuf","1.0","bd web pour lolchat",dbSize);
+	maltir.bdm.bd = openDatabase("patate","1.0","bd web pour lolchat",dbSize);
 }
 
 maltir.bdm.onError = function(tx, e) {
@@ -77,21 +77,13 @@ maltir.bdm.getByMembre=function(id,renderFunc){
 }
 
 maltir.bdm.loadColorMembre=function(tx, rs){
-try{
-		if(rs.rows.item(0).idperso == '0'){
-			var main = document.getElementById("colorMain");
-			var chucho = document.getElementById("colorChucho");
-			var back = document.getElementById("colorBack");
-			alert(rs.rows.item(0).colormain + " - " + rs.rows.item(0).colorchucho + " - " + rs.rows.item(0).colorback);
-			main.value = rs.rows.item(0).colormain;
-			chucho.value = rs.rows.item(0).colorchucho;
-			back.value = rs.rows.item(0).colorback;
-		}
-	}
-	catch(err){
-		//nothing to do
-		maltir.bdm.getByMembre(0,maltir.bdm.loadColorMembre);
-	}
+	var main = document.getElementById("colorMain");
+	var chucho = document.getElementById("colorChucho");
+	var back = document.getElementById("colorBack");
+
+	main.value = rs.rows.item(0).colormain;
+	chucho.value = rs.rows.item(0).colorchucho;
+	back.value = rs.rows.item(0).colorback;
 }
 
 maltir.bdm.temp = function(){

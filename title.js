@@ -12,7 +12,7 @@ window.onload=function(){
 	maltir.bdm.open();
 	maltir.bdm.createTable();
 	maltir.bdm.temp();
-	maltir.bdm.getByMembre(0,maltir.bdm.loadColorMembre);
+	maltir.bdm.getByMembre('0',maltir.bdm.loadColorMembre);
 }
 
 document.getElementById("chatinput").addEventListener("keydown", function(e) {
@@ -42,8 +42,3 @@ function titleChange(){
 function titleChangeNumber(number){
 	document.title="("+number+") " + document.title;
 }
-
-function sleep(delay) {
-        var start = new Date().getTime();
-        while (new Date().getTime() < start + delay);
-      }
