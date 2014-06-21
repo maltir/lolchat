@@ -1,5 +1,6 @@
 var theTitle=document.title;
 var check = self.setInterval(function(){testNewMessageChat()},100);
+var checkAttack = self.setInterval(function(){newAttack()},10000);
 var childCount=$("#chatmsgtable tbody").children().length;
 var count = 0;
 var lolchat = {};
@@ -8,13 +9,14 @@ window.onclick=function(){
 	count=0;
 }
 window.onload=function(){
-	lolchat.color.putButton();
+	/*lolchat.color.putButton();
 	lolchat.bdm.open();
 	lolchat.bdm.createTable();
 	lolchat.bdm.temp();
 	lolchat.bdm.getByMembre('0',lolchat.bdm.loadColorMembre);
 	
 	document.getElementById("editDefaultBtn").onclick=function(){lolchat.color.edit('0');};
+	*/
 }
 
 document.getElementById("chatinput").addEventListener("keydown", function(e) {
@@ -38,10 +40,17 @@ function testNewMessageChat(){
 
 function titleChange(){
 	document.title="*Nouveau message*";
-	var newMessageSound = new Audio('bip.mp3');
+	var newMessageSound = new Audio('http://s1download-universal-soundbank.com/mp3/sounds/newemail.mp3');
 	newMessageSound.play();
 }
 
 function titleChangeNumber(number){
 	document.title="("+number+") " + document.title;
+}
+
+function newAttack(){
+	if($("#cbtbadge").attr("style")=="display: block;"){
+		var newMessageSound = new Audio('http://s1download-universal-soundbank.com/mp3/sounds/4212.MP3');
+		newMessageSound.play();
+	}
 }
