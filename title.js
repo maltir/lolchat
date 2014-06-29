@@ -14,27 +14,23 @@ window.onload=function(){
   boutonAttaque();
    
    document.getElementById("btnMutePalais").onclick= function () {  
-		if(document.getElementById("btnMutePalais").value  ==="sonP")
+		if(document.getElementById("btnMutePalais").src  ==="http://images.fire-pigeon.com/uploads/1404008976.png")
 		  {
-				
-				document.getElementById("btnMutePalais").value = "muteP";
+				document.getElementById("btnMutePalais").src = "http://images.fire-pigeon.com/uploads/1404009008.png";
 		  }
 		  else
 		  {
-				document.getElementById("btnMutePalais").value = "sonP";
-
-			}
+				document.getElementById("btnMutePalais").src = "http://images.fire-pigeon.com/uploads/1404008976.png";
+		  }
 	};
    document.getElementById("btnMuteCombat").onclick=function () { 
-		if(document.getElementById("btnMuteCombat").value === "sonC")
+		if(document.getElementById("btnMuteCombat").src === "http://images.fire-pigeon.com/uploads/1404008976.png")
 	  {
-			document.getElementById("btnMuteCombat").value = "muteC";
-
+			document.getElementById("btnMuteCombat").src = "http://images.fire-pigeon.com/uploads/1404009008.png";
 	  }
 	  else
 	  {
-			document.getElementById("btnMuteCombat").value = "sonC";
-
+			document.getElementById("btnMuteCombat").src = "http://images.fire-pigeon.com/uploads/1404008976.png";
 		} 
 	};
 
@@ -50,24 +46,27 @@ window.onload=function(){
 
 function boutonAttaque()
 {
-	var positionButton = $("#ah_mid h1");
+	var positionButton = $("#uname .name");
 	
 	var  boutonMute1 = document.createElement("input");
 	var boutonMute2 = document.createElement("input");
 	var form = document.createElement("form");
-  	
-	  //Assign different attributes to the element.
+
 	form.setAttribute("style", "text-align:left;");
 	form.setAttribute("type", "post");
 	form.setAttribute("onsubmit", "return false;"); 
 	
-	boutonMute1.setAttribute("type", "button");
-	boutonMute1.setAttribute("value", "sonC");
+	boutonMute1.setAttribute("type", "image");
 	boutonMute1.setAttribute("id", "btnMuteCombat");
+	boutonMute1.setAttribute("value", "combat");
+	boutonMute1.setAttribute("style", "padding:0px 5px 0px 0px;");
+	boutonMute1.setAttribute("src", "http://images.fire-pigeon.com/uploads/1404008976.png");
 	
-	boutonMute2.setAttribute("type", "button");
-	boutonMute2.setAttribute("value", "sonP");
+	boutonMute2.setAttribute("type", "image");
 	boutonMute2.setAttribute("id", "btnMutePalais");
+	boutonMute2.setAttribute("value", "palais");
+	boutonMute2.setAttribute("style", "padding:0px 0px 0px 5px;");
+	boutonMute2.setAttribute("src", "http://images.fire-pigeon.com/uploads/1404008976.png");
 	
 	form.appendChild(boutonMute1);
 	form.appendChild(boutonMute2);
@@ -98,7 +97,7 @@ function testNewMessageChat(){
 function titleChange(){
 
 	document.title="*Nouveau message*";
-	if( document.getElementById("btnMutePalais").value  ==="muteP")
+	if( document.getElementById("btnMutePalais").src  ==="http://images.fire-pigeon.com/uploads/1404009008.png")
 	{
 		var newMessageSound = new Audio('http://s1download-universal-soundbank.com/mp3/sounds/newemail.mp3');
 		newMessageSound.play();
@@ -110,7 +109,7 @@ function titleChangeNumber(number){
 }
 
 function newAttack(){
-	if($("#cbtbadge").attr("style")=="display: block;" && document.getElementById("btnMuteCombat").value === "muteC"){
+	if($("#cbtbadge").attr("style")=="display: block;" && document.getElementById("btnMuteCombat").src === "http://images.fire-pigeon.com/uploads/1404009008.png"){
 		var newMessageSound = new Audio('http://s1download-universal-soundbank.com/mp3/sounds/4212.MP3');
 		newMessageSound.play();
 	}
