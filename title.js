@@ -13,29 +13,31 @@ window.onclick=function(){
 window.onload=function(){
   boutonAttaque();
    
-   document.getElementById("btnMutePalais").onclick= function () {  if(document.getElementById("btnMutePalais").value  ==="sonP")
-																													  {
-																															
-																															document.getElementById("btnMutePalais").value = "muteP";
-																													  }
-																													  else
-																													  {
-																															document.getElementById("btnMutePalais").value = "sonP";
+   document.getElementById("btnMutePalais").onclick= function () {  
+		if(document.getElementById("btnMutePalais").value  ==="sonP")
+		  {
+				
+				document.getElementById("btnMutePalais").value = "muteP";
+		  }
+		  else
+		  {
+				document.getElementById("btnMutePalais").value = "sonP";
 
-																														}
-																													};
-   document.getElementById("btnMuteCombat").onclick=function () {  if(document.getElementById("btnMuteCombat").value === "sonC")
-																												  {
-																														document.getElementById("btnMuteCombat").value = "muteC";
+			}
+	};
+   document.getElementById("btnMuteCombat").onclick=function () { 
+		if(document.getElementById("btnMuteCombat").value === "sonC")
+	  {
+			document.getElementById("btnMuteCombat").value = "muteC";
 
-																												  }
-																												  else
-																												  {
-																														document.getElementById("btnMuteCombat").value = "sonC";
+	  }
+	  else
+	  {
+			document.getElementById("btnMuteCombat").value = "sonC";
 
-																													} 
-																														};
-  
+		} 
+	};
+
 /*	lolchat.color.putButton();
 	lolchat.bdm.open();
 	lolchat.bdm.createTable();
