@@ -1,44 +1,43 @@
 var theTitle=document.title;
-var check = self.setInterval(function(){testNewMessageChat()},100);
-//var checkAttack = self.setInterval(function(){newAttack()},10000);
+var check = setInterval(function(){testNewMessageChat()},100);
+var checkAttack = setInterval(function(){newAttack()},10000);
 var childCount=$("#chatmsgtable tbody").children().length;
 var count = 0;
 var lolchat = {};
 var palaisOn="http://images.fire-pigeon.com/uploads/1414722342.png";
 var palaisOff="http://images.fire-pigeon.com/uploads/1414722316.png";
+var attackOn="http://images.fire-pigeon.com/uploads/1414723652.png";
+var attackOff="http://images.fire-pigeon.com/uploads/1414723631.png";
 
-
+//pour pouvoir selectionner le texte a la souris
+document.body.onmousedown= function (e){
+  return true;
+};
+  
 window.onclick=function(){
 	document.title=theTitle;
 	count=0;
 }
 setTimeout(function(){
-
-  //pour pouvoir selectionner le texte a la souris
-  document.body.onmousedown= function (e){
-      return true;
-  };
-
   boutonSound();
-  var cookSound = readCookie('palais');
-  if(cookSound){
-	if(cookSound==="true")
+  var cookSoundPalais = readCookie('palais');
+  var cookSoundAttack = readCookie('attack');
+  if(cookSoundPalais){
+	if(cookSoundPalais==="true")
 		document.getElementById("btnMutePalais").src = palaisOn;
-	else if(cookSound==="false")
+	else if(cookSoundPalais==="false")
 		document.getElementById("btnMutePalais").src = palaisOff;
   }
   else
 	createCookie('palais','false',30);
-   /*document.getElementById("btnMuteCombat").onclick=function () { 
-		if(document.getElementById("btnMuteCombat").src === "http://images.fire-pigeon.com/uploads/1404008976.png")
-	  {
-			document.getElementById("btnMuteCombat").src = "http://images.fire-pigeon.com/uploads/1404009008.png";
-	  }
-	  else
-	  {
-			document.getElementById("btnMuteCombat").src = "http://images.fire-pigeon.com/uploads/1404008976.png";
-		} 
-	};*/
+  if(cookSoundAttack){
+		if(cookSoundAttack==="true")
+			document.getElementById("btnMuteCombat").src = attackOn;
+		else if(cookSoundAttack==="false")
+			document.getElementById("btnMuteCombat").src = attackOff;
+		}
+  else
+	createCookie('attack','false',30);
 }, 2000);
 
 function boutonSound()
@@ -46,7 +45,7 @@ function boutonSound()
 	var positionButton = $("#uname .name");
 	
 	var  boutonMute1 = document.createElement("input");
-	//var boutonMute2 = document.createElement("input");
+	var boutonMute2 = document.createElement("input");
 	var form = document.createElement("form");
 
 	form.setAttribute("style", "text-align:left;");
@@ -59,14 +58,14 @@ function boutonSound()
 	boutonMute1.setAttribute("style", "padding:0px 5px 0px 0px;");
 	boutonMute1.setAttribute("src", palaisOff);
 	
-	/*boutonMute2.setAttribute("type", "image");
+	boutonMute2.setAttribute("type", "image");
 	boutonMute2.setAttribute("id", "btnMuteCombat");
 	boutonMute2.setAttribute("value", "combat");
 	boutonMute2.setAttribute("style", "padding:0px 0px 0px 5px;");
-	boutonMute2.setAttribute("src", "http://images.fire-pigeon.com/uploads/1404008976.png");
-	*/
+	boutonMute2.setAttribute("src", attackOff);
+	
 	form.appendChild(boutonMute1);
-	//form.appendChild(boutonMute2);
+	form.appendChild(boutonMute2);
 	positionButton[0].appendChild(form);
 	
  document.getElementById("btnMutePalais").onclick= function () {  
@@ -80,6 +79,18 @@ function boutonSound()
 			document.getElementById("btnMutePalais").src = palaisOff;
 			createCookie('palais','false',30);
 	  }
+	};
+	document.getElementById("btnMuteCombat").onclick=function () { 
+		if(document.getElementById("btnMuteCombat").src === attackOff)
+	  {
+			document.getElementById("btnMuteCombat").src = attackOn;
+			createCookie('attack','true',30);
+	  }
+	  else
+	  {
+			document.getElementById("btnMuteCombat").src = attackOff;
+			createCookie('attack','false',30);
+		} 
 	};
 }
 
@@ -118,7 +129,7 @@ function titleChangeNumber(number){
 }
 
 function newAttack(){
-	if($("#cbtbadge").attr("style")=="display: block;" && document.getElementById("btnMuteCombat").src === "http://images.fire-pigeon.com/uploads/1404009008.png"){
+	if($("#cbtbadge").attr("style")=="display: block;" && document.getElementById("btnMuteCombat").src === attackOn){
 		var newMessageSound = new Audio('http://s1download-universal-soundbank.com/mp3/sounds/4212.MP3');
 		newMessageSound.play();
 	}
