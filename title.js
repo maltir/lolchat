@@ -11,7 +11,7 @@ var attackOff="http://images.fire-pigeon.com/uploads/1414723631.png";
 
 //pour pouvoir selectionner le texte a la souris
 document.body.onmousedown= function (e){
-  return true;
+	return true;
 };
   
 window.onclick=function(){
@@ -19,25 +19,25 @@ window.onclick=function(){
 	count=0;
 }
 setTimeout(function(){
-  boutonSound();
-  var cookSoundPalais = readCookie('palais');
-  var cookSoundAttack = readCookie('attack');
-  if(cookSoundPalais){
-	if(cookSoundPalais==="true")
-		document.getElementById("btnMutePalais").src = palaisOn;
-	else if(cookSoundPalais==="false")
-		document.getElementById("btnMutePalais").src = palaisOff;
-  }
-  else
-	createCookie('palais','false',30);
-  if(cookSoundAttack){
+	boutonSound();
+	var cookSoundPalais = readCookie('palais');
+	var cookSoundAttack = readCookie('attack');
+	if(cookSoundPalais){
+		if(cookSoundPalais==="true")
+			document.getElementById("btnMutePalais").src = palaisOn;
+		else if(cookSoundPalais==="false")
+			document.getElementById("btnMutePalais").src = palaisOff;
+	}
+	else
+		createCookie('palais','false',30);
+	if(cookSoundAttack){
 		if(cookSoundAttack==="true")
 			document.getElementById("btnMuteCombat").src = attackOn;
 		else if(cookSoundAttack==="false")
 			document.getElementById("btnMuteCombat").src = attackOff;
 		}
-  else
-	createCookie('attack','false',30);
+	else
+		createCookie('attack','false',30);
 }, 2000);
 
 function boutonSound()
@@ -68,33 +68,31 @@ function boutonSound()
 	form.appendChild(boutonMute2);
 	positionButton[0].appendChild(form);
 	
- document.getElementById("btnMutePalais").onclick= function () {  
-	if(document.getElementById("btnMutePalais").src  ===palaisOff)
-	  {
+	document.getElementById("btnMutePalais").onclick= function () {  
+		if(document.getElementById("btnMutePalais").src  ===palaisOff)
+		{
 			document.getElementById("btnMutePalais").src = palaisOn;
 			createCookie('palais','true',30);
-	  }
-	  else
-	  {
+		}
+		else
+		{
 			document.getElementById("btnMutePalais").src = palaisOff;
 			createCookie('palais','false',30);
-	  }
+		}
 	};
 	document.getElementById("btnMuteCombat").onclick=function () { 
 		if(document.getElementById("btnMuteCombat").src === attackOff)
-	  {
+		{
 			document.getElementById("btnMuteCombat").src = attackOn;
 			createCookie('attack','true',30);
-	  }
-	  else
-	  {
+		}
+		else
+		{
 			document.getElementById("btnMuteCombat").src = attackOff;
 			createCookie('attack','false',30);
 		} 
 	};
 }
-
-
 
 document.getElementById("chatinput").addEventListener("keydown", function(e) {
     if (!e) { var e = window.event; }
@@ -115,7 +113,6 @@ function testNewMessageChat(){
 }
 
 function titleChange(){
-
 	document.title="*Nouveau message*";
 	if( document.getElementById("btnMutePalais").src  ===palaisOn)
 	{
