@@ -11,6 +11,12 @@ window.onclick=function(){
 	count=0;
 }
 window.onload=function(){
+
+  //pour pouvoir selectionner le texte a la souris
+  document.body.onmousedown= function (e){
+      return true;
+  };
+
   boutonAttaque();
    
    document.getElementById("btnMutePalais").onclick= function () {  
