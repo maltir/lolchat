@@ -4,6 +4,8 @@ var check = self.setInterval(function(){testNewMessageChat()},100);
 var childCount=$("#chatmsgtable tbody").children().length;
 var count = 0;
 var lolchat = {};
+var palaisOn="http://images.fire-pigeon.com/uploads/1414722342.png";
+var palaisOff="http://images.fire-pigeon.com/uploads/1414722316.png";
 
 
 window.onclick=function(){
@@ -18,6 +20,15 @@ setTimeout(function(){
   };
 
   boutonSound();
+  var cookSound = readCookie('palais');
+  if(cookSound){
+	if(cookSound==="true")
+		document.getElementById("btnMutePalais").src = palaisOn;
+	else if(cookSound==="false")
+		document.getElementById("btnMutePalais").src = palaisOff;
+  }
+  else
+	createCookie('palais','false',30);
    /*document.getElementById("btnMuteCombat").onclick=function () { 
 		if(document.getElementById("btnMuteCombat").src === "http://images.fire-pigeon.com/uploads/1404008976.png")
 	  {
@@ -46,7 +57,7 @@ function boutonSound()
 	boutonMute1.setAttribute("id", "btnMutePalais");
 	boutonMute1.setAttribute("value", "palais");
 	boutonMute1.setAttribute("style", "padding:0px 5px 0px 0px;");
-	boutonMute1.setAttribute("src", "http://images.fire-pigeon.com/uploads/1404008976.png");
+	boutonMute1.setAttribute("src", palaisOff);
 	
 	/*boutonMute2.setAttribute("type", "image");
 	boutonMute2.setAttribute("id", "btnMuteCombat");
@@ -59,13 +70,15 @@ function boutonSound()
 	positionButton[0].appendChild(form);
 	
  document.getElementById("btnMutePalais").onclick= function () {  
-	if(document.getElementById("btnMutePalais").src  ==="http://images.fire-pigeon.com/uploads/1404008976.png")
+	if(document.getElementById("btnMutePalais").src  ===palaisOff)
 	  {
-			document.getElementById("btnMutePalais").src = "http://images.fire-pigeon.com/uploads/1404009008.png";
+			document.getElementById("btnMutePalais").src = palaisOn;
+			createCookie('palais','true',30);
 	  }
 	  else
 	  {
-			document.getElementById("btnMutePalais").src = "http://images.fire-pigeon.com/uploads/1404008976.png";
+			document.getElementById("btnMutePalais").src = palaisOff;
+			createCookie('palais','false',30);
 	  }
 	};
 }
@@ -93,7 +106,7 @@ function testNewMessageChat(){
 function titleChange(){
 
 	document.title="*Nouveau message*";
-	if( document.getElementById("btnMutePalais").src  ==="http://images.fire-pigeon.com/uploads/1404009008.png")
+	if( document.getElementById("btnMutePalais").src  ===palaisOn)
 	{
 		var newMessageSound = new Audio('http://s1download-universal-soundbank.com/mp3/sounds/newemail.mp3');
 		newMessageSound.play();
@@ -109,4 +122,29 @@ function newAttack(){
 		var newMessageSound = new Audio('http://s1download-universal-soundbank.com/mp3/sounds/4212.MP3');
 		newMessageSound.play();
 	}
+}
+
+function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    createCookie(name,"",-1);
 }
