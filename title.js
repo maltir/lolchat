@@ -94,10 +94,12 @@ function boutonSound()
 	};
 }
 
-document.getElementById("chatinput").addEventListener("keydown", function(e) {
-    if (!e) { var e = window.event; }
-    if (e.keyCode == 13) { childCount++;}
-}, false);
+if(document.getElementById("chatinput") !== null){
+	document.getElementById("chatinput").addEventListener("keydown", function(e) {
+		if (!e) { var e = window.event; }
+		if (e.keyCode == 13) { childCount++;}
+	}, false);
+}
 
 function testNewMessageChat(){
 	if($("#uchat").attr("style")=="display: block;"){
