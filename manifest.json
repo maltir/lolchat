@@ -4,7 +4,7 @@
   "name": "Lands of lords chat",
   "short_name" : "LOLCHAT",
   "description": "Notification lors de nouvelles discutions dans un palais de lands of lords.",
-  "version": "0.8",
+  "version": "0.8.1",
   "icons": {"big":"lolshield.png"},
 
   "browser_action": {
@@ -12,12 +12,12 @@
     "default_title": "LOL chat"
   },
   "background": {
-    "scripts": ["jquery-1.10.2.min.js","title.js","color.js","base_donne.js"]
+    "scripts": ["jquery-1.10.2.min.js","title.js"]
   },
   "content_scripts": [
     {
       "matches": ["http://*.landsoflords.fr/*"],
-      "js": ["jquery-1.10.2.min.js","title.js","color.js","base_donne.js"]
+      "js": ["jquery-1.10.2.min.js","title.js"]
     }
   ],
   "permissions": [

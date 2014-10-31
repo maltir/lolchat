@@ -1,6 +1,6 @@
 var theTitle=document.title;
 var check = self.setInterval(function(){testNewMessageChat()},100);
-var checkAttack = self.setInterval(function(){newAttack()},10000);
+//var checkAttack = self.setInterval(function(){newAttack()},10000);
 var childCount=$("#chatmsgtable tbody").children().length;
 var count = 0;
 var lolchat = {};
@@ -17,7 +17,7 @@ window.onload=function(){
       return true;
   };
 
-  boutonAttaque();
+  boutonSound();
    
    document.getElementById("btnMutePalais").onclick= function () {  
 		if(document.getElementById("btnMutePalais").src  ==="http://images.fire-pigeon.com/uploads/1404008976.png")
@@ -29,7 +29,7 @@ window.onload=function(){
 				document.getElementById("btnMutePalais").src = "http://images.fire-pigeon.com/uploads/1404008976.png";
 		  }
 	};
-   document.getElementById("btnMuteCombat").onclick=function () { 
+   /*document.getElementById("btnMuteCombat").onclick=function () { 
 		if(document.getElementById("btnMuteCombat").src === "http://images.fire-pigeon.com/uploads/1404008976.png")
 	  {
 			document.getElementById("btnMuteCombat").src = "http://images.fire-pigeon.com/uploads/1404009008.png";
@@ -38,15 +38,15 @@ window.onload=function(){
 	  {
 			document.getElementById("btnMuteCombat").src = "http://images.fire-pigeon.com/uploads/1404008976.png";
 		} 
-	};
+	};*/
 }
 
-function boutonAttaque()
+function boutonSound()
 {
 	var positionButton = $("#uname .name");
 	
 	var  boutonMute1 = document.createElement("input");
-	var boutonMute2 = document.createElement("input");
+	//var boutonMute2 = document.createElement("input");
 	var form = document.createElement("form");
 
 	form.setAttribute("style", "text-align:left;");
@@ -54,19 +54,19 @@ function boutonAttaque()
 	form.setAttribute("onsubmit", "return false;"); 
 	
 	boutonMute1.setAttribute("type", "image");
-	boutonMute1.setAttribute("id", "btnMuteCombat");
-	boutonMute1.setAttribute("value", "combat");
+	boutonMute1.setAttribute("id", "btnMutePalais");
+	boutonMute1.setAttribute("value", "palais");
 	boutonMute1.setAttribute("style", "padding:0px 5px 0px 0px;");
 	boutonMute1.setAttribute("src", "http://images.fire-pigeon.com/uploads/1404008976.png");
 	
-	boutonMute2.setAttribute("type", "image");
-	boutonMute2.setAttribute("id", "btnMutePalais");
-	boutonMute2.setAttribute("value", "palais");
+	/*boutonMute2.setAttribute("type", "image");
+	boutonMute2.setAttribute("id", "btnMuteCombat");
+	boutonMute2.setAttribute("value", "combat");
 	boutonMute2.setAttribute("style", "padding:0px 0px 0px 5px;");
 	boutonMute2.setAttribute("src", "http://images.fire-pigeon.com/uploads/1404008976.png");
-	
+	*/
 	form.appendChild(boutonMute1);
-	form.appendChild(boutonMute2);
+	//form.appendChild(boutonMute2);
 	positionButton[0].appendChild(form);
 }
 
