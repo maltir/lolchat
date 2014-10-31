@@ -10,7 +10,7 @@ window.onclick=function(){
 	document.title=theTitle;
 	count=0;
 }
-window.onload=function(){
+setTimeout(function(){
 
   //pour pouvoir selectionner le texte a la souris
   document.body.onmousedown= function (e){
@@ -18,17 +18,6 @@ window.onload=function(){
   };
 
   boutonSound();
-   
-   document.getElementById("btnMutePalais").onclick= function () {  
-		if(document.getElementById("btnMutePalais").src  ==="http://images.fire-pigeon.com/uploads/1404008976.png")
-		  {
-				document.getElementById("btnMutePalais").src = "http://images.fire-pigeon.com/uploads/1404009008.png";
-		  }
-		  else
-		  {
-				document.getElementById("btnMutePalais").src = "http://images.fire-pigeon.com/uploads/1404008976.png";
-		  }
-	};
    /*document.getElementById("btnMuteCombat").onclick=function () { 
 		if(document.getElementById("btnMuteCombat").src === "http://images.fire-pigeon.com/uploads/1404008976.png")
 	  {
@@ -39,7 +28,7 @@ window.onload=function(){
 			document.getElementById("btnMuteCombat").src = "http://images.fire-pigeon.com/uploads/1404008976.png";
 		} 
 	};*/
-}
+}, 2000);
 
 function boutonSound()
 {
@@ -68,6 +57,17 @@ function boutonSound()
 	form.appendChild(boutonMute1);
 	//form.appendChild(boutonMute2);
 	positionButton[0].appendChild(form);
+	
+ document.getElementById("btnMutePalais").onclick= function () {  
+	if(document.getElementById("btnMutePalais").src  ==="http://images.fire-pigeon.com/uploads/1404008976.png")
+	  {
+			document.getElementById("btnMutePalais").src = "http://images.fire-pigeon.com/uploads/1404009008.png";
+	  }
+	  else
+	  {
+			document.getElementById("btnMutePalais").src = "http://images.fire-pigeon.com/uploads/1404008976.png";
+	  }
+	};
 }
 
 
