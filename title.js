@@ -39,15 +39,6 @@ window.onload=function(){
 			document.getElementById("btnMuteCombat").src = "http://images.fire-pigeon.com/uploads/1404008976.png";
 		} 
 	};
-
-/*	lolchat.color.putButton();
-	lolchat.bdm.open();
-	lolchat.bdm.createTable();
-	lolchat.bdm.temp();
-	lolchat.bdm.getByMembre('0',lolchat.bdm.loadColorMembre);
-	f
-	document.getElementById("editDefaultBtn").onclick=function(){lolchat.color.edit('0');};*/
-	
 }
 
 function boutonAttaque()
@@ -96,7 +87,6 @@ function testNewMessageChat(){
 		count++;
 		titleChangeNumber(count);
 		childCount=child;
-		lolchat.bdm.getByMembre('0',lolchat.color.changeColor);
 	}
 }
 
