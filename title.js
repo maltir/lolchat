@@ -118,7 +118,7 @@ function titleChange(){
 	document.title="*Nouveau message*";
 	if( document.getElementById("btnMutePalais").src  ===palaisOn)
 	{
-		var newMessageSound = new Audio('http://s1download-universal-soundbank.com/mp3/sounds/newemail.mp3');
+		var newMessageSound = new Audio('http://up.meewan.fr/data/meewan/newemail.ogg');
 		newMessageSound.play();
 	}
 }
@@ -129,7 +129,7 @@ function titleChangeNumber(number){
 
 function newAttack(){
 	if($("#cbtbadge").attr("style")=="display: block;" && document.getElementById("btnMuteCombat").src === attackOn){
-		var newMessageSound = new Audio('http://s1download-universal-soundbank.com/mp3/sounds/4212.MP3');
+		var newMessageSound = new Audio('http://up.meewan.fr/data/meewan/4212.ogg');
 		newMessageSound.play();
 	}
 }
