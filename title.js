@@ -1,6 +1,6 @@
 var theTitle=document.title;
 var check = setInterval(function(){testNewMessageChat()},100);
-var checkAttack = setInterval(function(){newAttack()},10000);
+//var checkAttack = setInterval(function(){newAttack()},10000);
 var childCount=$("#chatmsgtable tbody").children().length;
 var count = 0;
 var lolchat = {};
@@ -30,14 +30,14 @@ setTimeout(function(){
 	}
 	else
 		createCookie('palais','false',30);
-	if(cookSoundAttack){
+	/*if(cookSoundAttack){
 		if(cookSoundAttack==="true")
 			document.getElementById("btnMuteCombat").src = attackOn;
 		else if(cookSoundAttack==="false")
 			document.getElementById("btnMuteCombat").src = attackOff;
 		}
 	else
-		createCookie('attack','false',30);
+		createCookie('attack','false',30);*/
 }, 2000);
 
 function boutonSound()
@@ -45,7 +45,7 @@ function boutonSound()
 	var positionButton = $("#uname .name");
 	
 	var  boutonMute1 = document.createElement("input");
-	var boutonMute2 = document.createElement("input");
+	//var boutonMute2 = document.createElement("input");
 	var form = document.createElement("form");
 
 	form.setAttribute("style", "text-align:left;");
@@ -58,14 +58,14 @@ function boutonSound()
 	boutonMute1.setAttribute("style", "padding:0px 5px 0px 0px;");
 	boutonMute1.setAttribute("src", palaisOff);
 	
-	boutonMute2.setAttribute("type", "image");
+	/*boutonMute2.setAttribute("type", "image");
 	boutonMute2.setAttribute("id", "btnMuteCombat");
 	boutonMute2.setAttribute("value", "combat");
 	boutonMute2.setAttribute("style", "padding:0px 0px 0px 5px;");
-	boutonMute2.setAttribute("src", attackOff);
+	boutonMute2.setAttribute("src", attackOff);*/
 	
 	form.appendChild(boutonMute1);
-	form.appendChild(boutonMute2);
+	//form.appendChild(boutonMute2);
 	positionButton[0].appendChild(form);
 	
 	document.getElementById("btnMutePalais").onclick= function () {  
@@ -80,7 +80,7 @@ function boutonSound()
 			createCookie('palais','false',30);
 		}
 	};
-	document.getElementById("btnMuteCombat").onclick=function () { 
+	/*document.getElementById("btnMuteCombat").onclick=function () { 
 		if(document.getElementById("btnMuteCombat").src === attackOff)
 		{
 			document.getElementById("btnMuteCombat").src = attackOn;
@@ -91,7 +91,7 @@ function boutonSound()
 			document.getElementById("btnMuteCombat").src = attackOff;
 			createCookie('attack','false',30);
 		} 
-	};
+	};*/
 }
 
 if(document.getElementById("chatinput") !== null){
