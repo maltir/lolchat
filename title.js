@@ -13,7 +13,7 @@ var attackOff="http://images.fire-pigeon.com/uploads/1414723631.png";
 document.body.onmousedown= function (e){
 	return true;
 };
-  
+
 window.onclick=function(){
 	document.title=theTitle;
 	count=0;
@@ -43,32 +43,32 @@ setTimeout(function(){
 function boutonSound()
 {
 	var positionButton = $("#uname .name");
-	
+
 	var  boutonMute1 = document.createElement("input");
 	//var boutonMute2 = document.createElement("input");
 	var form = document.createElement("form");
 
 	form.setAttribute("style", "text-align:left;");
 	form.setAttribute("type", "post");
-	form.setAttribute("onsubmit", "return false;"); 
-	
+	form.setAttribute("onsubmit", "return false;");
+
 	boutonMute1.setAttribute("type", "image");
 	boutonMute1.setAttribute("id", "btnMutePalais");
 	boutonMute1.setAttribute("value", "palais");
 	boutonMute1.setAttribute("style", "padding:0px 5px 0px 0px;");
 	boutonMute1.setAttribute("src", palaisOff);
-	
+
 	/*boutonMute2.setAttribute("type", "image");
 	boutonMute2.setAttribute("id", "btnMuteCombat");
 	boutonMute2.setAttribute("value", "combat");
 	boutonMute2.setAttribute("style", "padding:0px 0px 0px 5px;");
 	boutonMute2.setAttribute("src", attackOff);*/
-	
+
 	form.appendChild(boutonMute1);
 	//form.appendChild(boutonMute2);
 	positionButton[0].appendChild(form);
-	
-	document.getElementById("btnMutePalais").onclick= function () {  
+
+	document.getElementById("btnMutePalais").onclick= function () {
 		if(document.getElementById("btnMutePalais").src  ===palaisOff)
 		{
 			document.getElementById("btnMutePalais").src = palaisOn;
@@ -80,7 +80,7 @@ function boutonSound()
 			createCookie('palais','false',30);
 		}
 	};
-	/*document.getElementById("btnMuteCombat").onclick=function () { 
+	/*document.getElementById("btnMuteCombat").onclick=function () {
 		if(document.getElementById("btnMuteCombat").src === attackOff)
 		{
 			document.getElementById("btnMuteCombat").src = attackOn;
@@ -90,7 +90,7 @@ function boutonSound()
 		{
 			document.getElementById("btnMuteCombat").src = attackOff;
 			createCookie('attack','false',30);
-		} 
+		}
 	};*/
 }
 
