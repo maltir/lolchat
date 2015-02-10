@@ -1,6 +1,6 @@
 var theTitle=document.title;
-var check = setInterval(function(){testNewMessageChat()},100);
 //var checkAttack = setInterval(function(){newAttack()},10000);
+var check = setInterval(function(){testNewMessageChat()},100);
 var childCount=$("#chatmsgtable tbody").children().length;
 var count = 0;
 var lolchat = {};
